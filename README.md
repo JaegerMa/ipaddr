@@ -73,6 +73,8 @@ Base class representing an address or net.
 	- compress: When true, the address is compressed as much as possible. Takes effect only on V6Address objects
 - `toBigInt(): bigint`  
   Transforms address to a bigint
+- `clone(): Address`
+  Creates clone of this address object
 
 
 ### `V4Address` extends `Address`
