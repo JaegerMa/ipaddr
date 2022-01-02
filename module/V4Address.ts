@@ -45,12 +45,12 @@ export class V4Address extends Address
 
 		return str;
 	}
-	[Symbol.toPrimitive]()
+	[Symbol.toPrimitive](): string
 	{
 		return this.toString();
 	}
 
-	clone()
+	clone(): V4Address
 	{
 		return new V4Address({ bytes: this.bytes.slice(), subnetSize: this.subnetSize });
 	}
