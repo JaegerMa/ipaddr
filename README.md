@@ -42,8 +42,8 @@ net.covers('10.0.0.300'); // => false
 
 - `function fromString(address: string, addressFamily?: number | undefined): V4Address | V6Address | undefined`  
   Parses string to an IPv4 or IPv6 address. Returns `undefined` for invalid data or unknown address family.
-  	- address: Address string to be parsed
-	- addressFamily?: Optional parameter. Possible values: `4`, `6`, `0`, `undefined`. When `0` or `undefined`, the address is first tried to be parsed as V4Address and then as V6Address  
+  - address: Address string to be parsed
+  - addressFamily?: Optional parameter. Possible values: `4`, `6`, `0`, `undefined`. When `0` or `undefined`, the address is first tried to be parsed as V4Address and then as V6Address
 	  Default: `undefined`
 - `function fromBigInt(address: bigint, addressFamily: number, subnetSize?: number): V4Address | V6Address | undefined`  
   Reads an IPv4 address or net from a bigint. Returns `undefined` for invalid data.
