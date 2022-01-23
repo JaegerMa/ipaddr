@@ -51,6 +51,6 @@ export abstract class Address
 	}
 
 	abstract toString(): string;
-	abstract toString({ appendCIDR, uncompressed }: { appendCIDR?: boolean | undefined, uncompressed?: boolean; }): string;
+	abstract toString({ appendCIDR, compress }: { appendCIDR?: boolean | undefined, compress?: boolean; }): string;
 	abstract clone(): Address;
 }

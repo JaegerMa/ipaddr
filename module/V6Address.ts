@@ -74,9 +74,9 @@ export class V6Address extends Address
 
 		return this._covers(addressObj);
 	}
-	toString({ appendCIDR = undefined, uncompressed = false }: { appendCIDR?: boolean | undefined, uncompressed?: boolean; } = {}): string
+	toString({ appendCIDR = undefined, compress = true }: { appendCIDR?: boolean | undefined, compress?: boolean; } = {}): string
 	{
-		if(!uncompressed)
+		if(compress ?? true)
 			return this.toCompressedString(...arguments);
 
 
