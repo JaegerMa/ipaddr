@@ -76,9 +76,18 @@ export class V6Address extends Address
 	}
 	toString({ appendCIDR = undefined, uncompressed = false }: { appendCIDR?: boolean | undefined, uncompressed?: boolean; } = {}): string
 	{
-		if(uncompressed)
-			return this.toUncompressedString(...arguments);
+		if(!uncompressed)
+			return this.toCompressedString(...arguments);
 
+
+		let str = this.blocks.map((byte) => byte.toString(16).padStart(4, '0')).join(':');
+		if(appendCIDR === true || (appendCIDR === undefined && this.subnetSize !== this.size))
+			str += '/' + this.subnetSize;
+
+		return str;
+	}
+	toCompressedString({ appendCIDR = undefined }: { appendCIDR?: boolean | undefined; } = {}): string
+	{
 		const biggestVoid = this.biggestVoid || { start: -1, size: 0 };
 		const blocks = this.blocks
 			.map((byte, idx) => idx === biggestVoid.start ? '' : byte)
@@ -91,14 +100,6 @@ export class V6Address extends Address
 
 
 		let str = blocks.map((byte) => byte.toString(16)).join(':');
-		if(appendCIDR === true || (appendCIDR === undefined && this.subnetSize !== this.size))
-			str += '/' + this.subnetSize;
-
-		return str;
-	}
-	toUncompressedString({ appendCIDR = undefined }: { appendCIDR?: boolean | undefined; } = {}): string
-	{
-		let str = this.blocks.map((byte) => byte.toString(16).padStart(4, '0')).join(':');
 		if(appendCIDR === true || (appendCIDR === undefined && this.subnetSize !== this.size))
 			str += '/' + this.subnetSize;
 

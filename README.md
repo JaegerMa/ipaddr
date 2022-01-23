@@ -124,8 +124,6 @@ IPv6 address or net
   Formats the address to a string
     - appendCIDR: When undefined, the CIDR is appended only when the address object defines a subnet
 	- compress: When true, the address is compressed as much as possible
-- `toUncompressedString({ appendCIDR = undefined }): string`  
-  Formats the address to an uncompressed string. This method is an alias for `toString({ compress: false })`
 - `clone(): V6Address`  
   Creates clone of this address object
 - `static fromString(string): V6Address | undefined`  
@@ -170,7 +168,7 @@ let address = V6Address.fromString('::1');
 	- bytes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 	- subnetSize: 128
 */
-address.toUncompressedString(); // => 0000:0000:0000:0000:0000:0000:0000:0001
+address.toString({ uncompressed: true }); // => 0000:0000:0000:0000:0000:0000:0000:0001
 address.toString(); // => ::1
 address.toString({ appendCIDR: true }); // => ::1/128
 
@@ -182,6 +180,6 @@ let address = V6Address.fromString('::1:0:0:0:0:0/100');
 	- bytes: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	- subnetSize: 128
 */
-address.toUncompressedString(); // => 0000:0000:0001:0000:0000:0000:0000:0000/100
+address.toString({ uncompressed: true }); // => 0000:0000:0001:0000:0000:0000:0000:0000/100
 address.toString(); // => 0:0:1::/100
 address.toString({ appendCIDR: false }); // => 0:0:1::
