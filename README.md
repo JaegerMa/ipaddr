@@ -67,13 +67,13 @@ Base class representing an address or net.
 #### Methods
 - `covers(Address | string): boolean`  
   Checks whether the current net covers/includes the given address or net
-- `toString({ appendCIDR = undefined, compress = true }): string`  
+- `toString({ appendCIDR = undefined, uncompressed = true }): string`  
   Formats the address to a string
     - appendCIDR: When undefined, the CIDR is appended only when the address object defines a subnet
-	- compress: When true, the address is compressed as much as possible. Takes effect only on V6Address objects
+	- uncompressed: When true, the address is not compressed. Takes effect only on V6Address objects
 - `toBigInt(): bigint`  
   Transforms address to a bigint
-- `clone(): Address`
+- `clone(): Address`  
   Creates clone of this address object
 
 
@@ -120,12 +120,12 @@ IPv6 address or net
 #### Methods
 - `covers(Address | string): boolean`  
   Checks whether the current net covers/includes the given address
-- `toString({ appendCIDR = undefined, compress = true }): string`  
+- `toString({ appendCIDR = undefined, uncompressed = true }): string`  
   Formats the address to a string
     - appendCIDR: When undefined, the CIDR is appended only when the address object defines a subnet
-	- compress: When true, the address is compressed as much as possible
+	- uncompressed: When true, the address is not compressed as much as possible
 - `toUncompressedString({ appendCIDR = undefined }): string`  
-  Formats the address to an uncompressed string. This method is an alias for `toString({ compress: false })`
+  Formats the address to an uncompressed string. This method is an alias for `toString({ uncompressed: true })`
 - `clone(): V6Address`  
   Creates clone of this address object
 - `static fromString(string): V6Address | undefined`  
